@@ -1,6 +1,8 @@
 import * as THREE from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
 import { useRef, useState } from 'react'
+import { shaderMaterial, MeshWobbleMaterial } from "@react-three/drei";
+import glsl from "babel-plugin-glsl/macro";
 
 export default function Box(props) {
   const { z } = props
@@ -25,14 +27,12 @@ export default function Box(props) {
       setStopped(true)
     }
   }) 
+  
 
   return (
       <mesh ref={ref}>
-        <planeGeometry args={[data.w, data.h, 16, 16]} wireframe/>
-        <shaderMaterial 
-          color={{color: 0xff0000}}
-          wireframe
-        />
+        <planeGeometry args={[data.w, data.h, 16, 16]} />
+        <MeshWobbleMaterial factor={0.2} speed={5} color={"hotpink"} wireframe/>
       </mesh>
   )
 }
