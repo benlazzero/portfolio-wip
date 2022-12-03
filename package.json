@@ -12,16 +12,19 @@
   "dependencies": {
     "@react-three/drei": "^9.40.0",
     "@react-three/fiber": "^8.9.0",
-    "glsl-random": "^0.0.5",
+    "babel-plugin-glsl": "^1.0.0",
     "next": "^13.0.1",
     "next-pwa": "^5.6.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-merge-refs": "^2.0.1",
+    "react-spring": "^9.5.5",
     "three": "^0.146.0",
     "three-stdlib": "^2.17.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.20.5",
+    "@babel/preset-env": "^7.20.2",
     "@next/bundle-analyzer": "^12.3.1",
     "@types/node": "^18.11.10",
     "@types/react": "^18.0.25",
@@ -29,7 +32,6 @@
     "eslint": "^8.24.0",
     "eslint-config-next": "^13.0.1",
     "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-tailwind": "^0.2.1",
     "file-loader": "^6.2.0",
     "glslify": "^7.1.1",
     "glslify-loader": "^2.0.0",
@@ -49,5 +51,17 @@
     "export": "EXPORT=true next build && EXPORT=true next export",
     "analyze": "ANALYZE=true next build",
     "start": "next start"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

@@ -3,6 +3,7 @@ import dynamic from 'next/dynamic'
 import Header from '@/config'
 import Layout from '@/components/dom/Layout'
 import '@/styles/index.css'
+import { Sparkles } from '@react-three/drei'
 
 const Scene = dynamic(() => import('@/components/canvas/Scene'), { ssr: true })
 
@@ -19,6 +20,7 @@ export default function App({ Component, pageProps = { title: 'index' } }) {
         {Component?.canvas && (
           <Scene className='pointer-events-none' eventSource={ref} eventPrefix='client'>
             {Component.canvas(pageProps)}
+            <Sparkles color={0xff000} count={500} size={10} scale={[20, 20, 100]}/>
           </Scene>
         )}
       </Layout>

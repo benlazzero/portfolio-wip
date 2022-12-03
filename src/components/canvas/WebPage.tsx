@@ -1,10 +1,11 @@
 import * as THREE from 'three'
 import { useFrame, useThree } from '@react-three/fiber'
-import { useRef, useState } from 'react'
-import { shaderMaterial, MeshWobbleMaterial } from "@react-three/drei";
+import { useRef, useState, Suspense } from 'react'
+import { shaderMaterial, MeshWobbleMaterial, useTexture, Sparkles } from "@react-three/drei";
 import glsl from "babel-plugin-glsl/macro";
 
-export default function Box(props) {
+export default function WebPage(props) {
+  const texture = useTexture('/mapper.png')
   const { z } = props
   const { viewport, camera } = useThree()
   const { width, height } = viewport.getCurrentViewport(camera, [0, 0, z])
@@ -28,11 +29,12 @@ export default function Box(props) {
     }
   }) 
   
-
   return (
-      <mesh ref={ref}>
-        <planeGeometry args={[data.w, data.h, 16, 16]} />
-        <MeshWobbleMaterial factor={0.2} speed={5} color={"hotpink"} wireframe/>
-      </mesh>
+      <Suspense fallback={null}>
+        <mesh ref={ref}>
+          <planeGeometry args={[data.w, data.h, 16, 16]} />
+          <MeshWobbleMaterial factor={0.1} speed={3} color={"hotpink"} map={texture} transparent opacity={0.9}/>
+        </mesh>
+      </Suspense>
   )
 }
